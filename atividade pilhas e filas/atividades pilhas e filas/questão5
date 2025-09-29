@@ -1,0 +1,46 @@
+public class FilaArray {
+    private int[] elementos;
+    private int inicio;
+    private int fim;
+    private int tamanho;
+
+    public FilaArray(int capacidade) {
+        elementos = new int[capacidade];
+        inicio = 0;
+        fim = -1;
+        tamanho = 0;
+    }
+
+    public void enqueue(int valor) {
+        if (tamanho == elementos.length) {
+            System.out.println("Fila cheia!");
+            return;
+        }
+        fim = (fim + 1) % elementos.length;
+        elementos[fim] = valor;
+        tamanho++;
+    }
+
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Fila vazia!");
+            return -1;
+        }
+        int valor = elementos[inicio];
+        inicio = (inicio + 1) % elementos.length;
+        tamanho--;
+        return valor;
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Fila vazia!");
+            return -1;
+        }
+        return elementos[inicio];
+    }
+
+    public boolean isEmpty() {
+        return tamanho == 0;
+    }
+}
